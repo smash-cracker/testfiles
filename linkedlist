@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+	int data;
+	struct Node* next;
+};
+
+struct Node* head = NULL;
+struct Node *temp,*temp2;
+struct Node* new_node;
+
+void insertBeg(int d) {
+    struct Node* new_node;
+    new_node = (struct Node*)malloc(sizeof(struct Node));
+    new_node->data = d;
+    new_node->next = head;
+    head = new_node;
+}
+
+void insertEnd(int d) {
+    new_node = (struct Node*)malloc(sizeof(struct Node));
+    new_node->data = d;
+    temp = head;
+    while(temp->next!=NULL)
+        temp = temp->next;
+    temp->next = new_node;
+}
+void printList(struct Node* n)
+{
+    printf("\n");
+	while (n != NULL) {
+		printf(" %d ", n->data);
+		n = n->next;
+	}
+}
+
+void main()
+{
+	int c,d,pos,n;
+    printf("7. Create n nodes\n1. Create a node at beginning\n2. Insert at end\n3. Delete a node at beginning\n4. Delete a node at end\n5. Insert at a position\n6. Display");
+    while(1) {
+    printf("\nchoice :");
+    scanf("%d",&c);
+    switch(c) {
+            case 1: printf("Enter data of node: ");
+                    scanf("%d",&d);
+                    insertBeg(d);
+                    break;
+            case 2: printf("Enter data of node: ");
+                    scanf("%d",&d);
+                    insertEnd(d);
+                    break;  
+            case 3: head = head->next;
+                    break;
+            case 4: temp = head;
+                    while(temp->next!=NULL) {
+                        temp2 = temp;
+                        temp = temp->next;
+                    }
+                    temp2->next = NULL;
+                    free(temp);
+                    break;
+            case 5: printf("Enter data of node: ");
+                    scanf("%d",&d);
+                    printf("Enter position of node: ");
+                    scanf("%d",&pos);
+                    new_node = (struct Node*)malloc(sizeof(struct Node));
+                    new_node->data = d;
+                    temp = head;
+                    if(pos==1) {
+                        new_node->next = head;
+                        head = new_node;
+                        break;
+                    }
+                    for(int i=1; i<pos-1; i++) {
+                         temp = temp->next;
+                    }
+                    new_node->next = temp->next;
+                    temp->next = new_node;
+            case 6: printList(head);
+                    break;
+            case 7: printf("Enter number of nodes: ");
+                    scanf("%d",&n);
+                    for(int i=0; i<n;i++) {
+                        printf("Enter the data of node %d: ",i+1);
+                        scanf("%d",&d);
+                        if(i=0)
+                            insertBeg(d);
+                        insertEnd(d);
+                    }
+        }
+    }
+}
