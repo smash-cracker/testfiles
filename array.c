@@ -31,13 +31,15 @@ void main() {
                 break;
         case 3: printf("Enter elemet to be deleted: ");
                 scanf("%d",&num);
-                
-                for(int i=p-1;i<size;i++)
-                    arr[i]=arr[i+1];        
+                int a = searchh(arr,num,size);
+                if(a!=-1) {
+                    for(int i=a;i<size;i++)
+                        arr[i]=arr[i+1];
+                }     
                 break;
         case 4: printf("Enter element to be searched: ");
                 scanf("%d",&num);
-                int a = searchh(arr,num,size);
+                a = searchh(arr,num,size);
                 if(a==-1) {
                     printf("Element not found");
                 } else {
