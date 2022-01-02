@@ -1,1 +1,1 @@
-http://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html
+http://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.ht
