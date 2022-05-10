@@ -44,6 +44,11 @@ collection = mydatabase.studlist1
 #     print(x)
 
 # 9
-results = collection.find({"$nor":[{"address.city": "Kollam"}]},{"name":1, "address.city":1})
+results = collection.find({"city":{"$nor":["Trivandrum","Kollam"]}})
+for x in results:
+    print(x)
+
+# 10    
+results = collection.find({"gender":"female","city":{"$in":["Trivandrum","Kollam"]}})
 for x in results:
     print(x)
